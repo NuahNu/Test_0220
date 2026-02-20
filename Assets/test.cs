@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -10,48 +12,30 @@ using UnityEngine;
 public class test : MonoBehaviour
 {
     #region 인스펙터
-    [Header("body")]
-    [SerializeField] Transform _body;
 
-    [Header("속도")]
-    [SerializeField] float _speed;
     #endregion
 
     #region 내부 변수
-
+    public float speed = 5f;
     #endregion
 
     void Awake()
     {
-
+        
     }
 
     void Start()
     {
-
+        
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            _body.Translate(Vector3.forward * _speed * Time.deltaTime);
-        }
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            _body.Translate(-Vector3.forward * _speed * Time.deltaTime);
-        }
+        Vector3 move = new Vector3(x, 0, z);
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            _body.Translate(Vector3.right * _speed * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            _body.Translate(-Vector3.right * _speed * Time.deltaTime);
-        }
-
+        transform.Translate(move * speed * Time.deltaTime);
     }
 }
